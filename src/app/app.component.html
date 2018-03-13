@@ -17,4 +17,17 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+<ul>
+  <li *ngFor="let entry of entries">
+    {{entry.Email}}
+    <br>
+    {{entry.Title}}
+    <br>
+    {{entry.Content}}
+  </li>
+</ul>
 
+<input type="text" [(ngModel)]="dummyEntry.Email">EMail
+<input type="text" [(ngModel)]="dummyEntry.Title">Title
+<input type="text" [(ngModel)]="dummyEntry.Content">Content
+<button (click)="addEntry()">Click Me!</button>
