@@ -30,12 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   addEntry() {
-    if (this.userEntry.Email == '' || this.userEntry.Title == '' || this.userEntry.Content == '') {
-      this.errorMessage = 'Please type in some values!';
-      return;
-    }
-    this.errorMessage = '';
-    this.entries.push(this.userEntry);
+    //this.entries.push(this.userEntry);
     var json = '{\"Id\":0,\"Email\":\"' + this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
@@ -46,6 +41,7 @@ export class AppComponent implements OnInit {
         console.log(err);
       }
     );
+    location.reload();
   }
 
   ngOnInit(): void {
@@ -58,5 +54,14 @@ export class AppComponent implements OnInit {
         this.errorMessage = 'Server-side error occured.';
       }
     });
+  }
+
+  submitted = true;
+
+  onSubmit(): boolean {
+    if (this.submitted)
+      return this.submitted = false;
+    if (!this.submitted)
+      return this.submitted = true;
   }
 }
