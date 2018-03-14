@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
 
   title = 'app';
   entries: UserEntries[];
-  dummyEntry: UserEntries;
+  userEntry: UserEntries;
 
   constructor(private http: HttpClient) {
-    this.dummyEntry = {
+    this.userEntry = {
       Id: 0,
       Email: '',
       Title: '',
@@ -29,8 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   addEntry() {
-    this.entries.push(this.dummyEntry)
-    var json = '{\"Id\":0,\"Email\":\"'+ this.dummyEntry.Email + '\",\"Title\":\"' + this.dummyEntry.Title + '\",\"Content\":\"' + this.dummyEntry.Content + '\"}';
+    var json = '{\"Id\":0,\"Email\":\"'+ this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
       res => {
@@ -43,7 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/guestbook').subscribe(data => console.log(data));
     this.http.get<UserEntries[]>('http://localhost:3000/guestbook').subscribe(data => this.entries = data, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('Client-side error occured.');
