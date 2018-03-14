@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -14,7 +13,8 @@
     {{entry.Content}}
   </li>
 </ul>
-<input type="text" [(ngModel)]="userEntry.Email">EMail
-<input type="text" [(ngModel)]="userEntry.Title">Title
-<input type="text" [(ngModel)]="userEntry.Content">Content
+<input type="text" [(ngModel)]="userEntry.Email"> EMail
+<input type="text" [(ngModel)]="userEntry.Title"> Title
+<input type="text" [(ngModel)]="userEntry.Content"> Content
 <button (click)="addEntry()">Click Me!</button>
+<p>{{errorMessage}}</p>

@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   entries: UserEntries[];
   userEntry: UserEntries;
+  errorMessage: string;
 
   constructor(private http: HttpClient) {
     this.userEntry = {
@@ -25,11 +26,17 @@ export class AppComponent implements OnInit {
       Email: '',
       Title: '',
       Content: ''
-    }
+    };
   }
 
   addEntry() {
-    var json = '{\"Id\":0,\"Email\":\"'+ this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
+    if (this.userEntry.Email == '' || this.userEntry.Title == '' || this.userEntry.Content == '') {
+      this.errorMessage = 'Please type in some values!';
+      return;
+    }
+    this.errorMessage = '';
+    this.entries.push(this.userEntry);
+    var json = '{\"Id\":0,\"Email\":\"' + this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
       res => {
@@ -45,8 +52,10 @@ export class AppComponent implements OnInit {
     this.http.get<UserEntries[]>('http://localhost:3000/guestbook').subscribe(data => this.entries = data, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('Client-side error occured.');
+        this.errorMessage = 'Client-side error occured.';
       } else {
         console.log('Server-side error occured.');
+        this.errorMessage = 'Server-side error occured.';
       }
     });
   }
