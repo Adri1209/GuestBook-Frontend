@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
 
   addEntry() {
 
-    this.tempEntry = {Id: 0, Email: this.userEntry.Email, Title: this.userEntry.Title, Content: this.userEntry.Content};
+    this.tempEntry = {Id: this.entries.length, Email: this.userEntry.Email, Title: this.userEntry.Title, Content: this.userEntry.Content};
     var json = '{\"Id\":0,\"Email\":\"' + this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
