@@ -18,19 +18,22 @@ export class AppComponent implements OnInit {
   title = 'app';
   entries: UserEntries[];
   userEntry: UserEntries;
+  tempEntry: UserEntries;
   errorMessage: string;
 
   constructor(private http: HttpClient) {
     this.userEntry = {
       Id: 0,
-      Email: '',
-      Title: '',
-      Content: ''
+      Email: "",
+      Title: "",
+      Content: ""
     };
   }
 
+
   addEntry() {
-    //this.entries.push(this.userEntry);
+
+    this.tempEntry = {Id: 0, Email: this.userEntry.Email, Title: this.userEntry.Title, Content: this.userEntry.Content};
     var json = '{\"Id\":0,\"Email\":\"' + this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
@@ -41,7 +44,7 @@ export class AppComponent implements OnInit {
         console.log(err);
       }
     );
-    location.reload();
+    this.entries.push(this.tempEntry);
   }
 
   ngOnInit(): void {
