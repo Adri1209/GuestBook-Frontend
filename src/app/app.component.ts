@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
   addEntry() {
 
     let date = new Date();
-    let tempEntry = {Id: this.entries.length, Name: this.userEntry.Name , Email: this.userEntry.Email, Date: date.toLocaleDateString()+" "+date.toLocaleTimeString(), Title: this.userEntry.Title, Content: this.userEntry.Content};
-    let json = "{\"Id\":0,\"Name\":\"" + this.userEntry.Name + "\",\"Email\":\""+ this.userEntry.Email + "\",\"Date\":\"" + date.toLocaleDateString()+" "+date.toLocaleTimeString() + "\",\"Title\":\"" + this.userEntry.Title + "\",\"Content\":\"" + this.userEntry.Content + "\"}";
+    let tempEntry = {Id: this.entries.length, Name: this.userEntry.Name , Email: this.userEntry.Email, Date: date.toLocaleDateString()+" - "+date.toLocaleTimeString(), Title: this.userEntry.Title, Content: this.userEntry.Content};
+    let json = "{\"Id\":0,\"Name\":\"" + this.userEntry.Name + "\",\"Email\":\""+ this.userEntry.Email + "\",\"Date\":\"" + date.toLocaleDateString()+" - "+date.toLocaleTimeString() + "\",\"Title\":\"" + this.userEntry.Title + "\",\"Content\":\"" + this.userEntry.Content + "\"}";
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
       res => {

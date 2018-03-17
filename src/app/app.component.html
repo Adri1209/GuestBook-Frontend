@@ -1,18 +1,21 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<div class="container">
-    <form #mailform = "ngForm">
-    <div class="form-group">
-      <label for="email">EMail</label>
-      <input type="text" class="form-control" id="Email"
-             required
-             [(ngModel)]="userEntry.Email" name="Email"
-             #name="ngModel">
-    </div>
+<div id="page">
+
+  <div class="box">
+    <h1>Gästebuch</h1>
+    <p>Liebe Gäste, wir sind sehr bemüht Ihren Aufenthalt bei uns bestmöglich zu gestalten. Über Ihr Feedback würden wir
+      uns sehr freuen!</p>
+  </div>
+
+  <div id="newEntry" class="box">
+    <h2>Neuen Eintrag hinzufügen</h2>
+    <form #mailform="ngForm">
+      <div class="form-group">
+        <label for="email">EMail</label>
+        <input type="text" class="form-control" id="Email"
+               required
+               [(ngModel)]="userEntry.Email" name="Email"
+               #name="ngModel">
+      </div>
     </form>
     <form #entryform="ngForm">
       <div class="form-group">
@@ -30,29 +33,33 @@
                #name="ngModel">
       </div>
       <div class="form-group">
-      <label for="content">Content*</label>
-      <input type="text" class="form-control" id="Content"
-             required
-             [(ngModel)]="userEntry.Content" name="Content"
-             #name="ngModel">
+        <label for="content">Content*</label>
+        <input type="text" class="form-control" id="Content"
+               required
+               [(ngModel)]="userEntry.Content" name="Content"
+               #name="ngModel">
       </div>
       <br>
-      <button type="submit" class="btn btn-default" (click)="addEntry(); mailform.reset(); entryform.reset()" [disabled]="!entryform.form.valid">New Entry</button>
+      <button type="submit" class="btn btn-default" (click)="addEntry(); mailform.reset(); entryform.reset()"
+              [disabled]="!entryform.form.valid">New Entry
+      </button>
     </form>
   </div>
-<ul>
-  <div *ngFor="let entry of entries?.reverse()">
-    {{entry.Name}}
-    <br>
-    <div *ngIf="entry.Email != ''">
-      <a href="mailto:{{entry.Email}}">E-Mail</a>
-    </div>
-    {{entry.Date}}
-    <br>
-    {{entry.Title}}
-    <br>
-    {{entry.Content}}
-  </div>
-  <br>
-</ul>
 
+  <div id="allEntries" class="box">
+    <div *ngFor="let entry of entries?.reverse()">
+      <b>{{entry.Name}}</b>
+      <div class="entry-info">
+        {{entry.Date}} Uhr
+        <div class="entry-email" *ngIf="entry.Email != ''">
+          | <a href="mailto:{{entry.Email}}">E-Mail</a>
+        </div>
+      </div>
+      <div class="entry-message">
+        <p>{{entry.Title}}</p>
+        <p>{{entry.Content}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
