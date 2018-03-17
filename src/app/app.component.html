@@ -45,11 +45,15 @@
   <div *ngFor="let entry of entries?.reverse()">
     {{entry.Name}}
     <br>
+    <div *ngIf="entry.Email != ''">
+      <a href="mailto:{{entry.Email}}">E-Mail</a>
+    </div>
     {{entry.Date}}
     <br>
     {{entry.Title}}
     <br>
     {{entry.Content}}
   </div>
+  <br>
 </ul>
 

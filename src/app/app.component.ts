@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.userEntry = {
       Id: 0,
       Name: "",
-      Email: "",
+      Email: '',
       Date: "",
       Title: "",
       Content: ""
