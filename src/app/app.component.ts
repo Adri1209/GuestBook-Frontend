@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export interface UserEntries {
   Id: number;
   Email: string;
+  Date: string;
   Title: string;
   Content: string;
 }
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
     this.userEntry = {
       Id: 0,
       Email: "",
+      Date: "",
       Title: "",
       Content: ""
     };
@@ -32,8 +34,9 @@ export class AppComponent implements OnInit {
 
   addEntry() {
 
-    var tempEntry = {Id: this.entries.length, Email: this.userEntry.Email, Title: this.userEntry.Title, Content: this.userEntry.Content};
-    var json = '{\"Id\":0,\"Email\":\"' + this.userEntry.Email + '\",\"Title\":\"' + this.userEntry.Title + '\",\"Content\":\"' + this.userEntry.Content + '\"}';
+    let date = new Date();
+    let tempEntry = {Id: this.entries.length, Email: this.userEntry.Email, Date: date.toLocaleDateString()+" "+date.toLocaleTimeString(), Title: this.userEntry.Title, Content: this.userEntry.Content};
+    let json = "{\"Id\":0,\"Email\":\""+ this.userEntry.Email + "\",\"Date\":\"" + date.toLocaleDateString()+" "+date.toLocaleTimeString() + "\",\"Title\":\"" + this.userEntry.Title + "\",\"Content\":\"" + this.userEntry.Content + "\"}";
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
       res => {

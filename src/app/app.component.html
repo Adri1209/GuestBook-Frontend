@@ -44,12 +44,14 @@
   </div>
 </div>
 <ul>
-  <li *ngFor="let entry of entries?.reverse()">
+  <div *ngFor="let entry of entries?.reverse()">
     {{entry.Email}}
+    <br>
+    {{entry.Date}}
     <br>
     {{entry.Title}}
     <br>
     {{entry.Content}}
-  </li>
+  </div>
 </ul>
 
