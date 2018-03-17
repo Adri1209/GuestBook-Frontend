@@ -44,7 +44,7 @@
   </div>
 </div>
 <ul>
-  <li *ngFor="let entry of entries">
+  <li *ngFor="let entry of entries?.reverse()">
     {{entry.Email}}
     <br>
     {{entry.Title}}
