@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 export interface UserEntries {
   Id: number;
+  Name: string;
   Email: string;
   Date: string;
   Title: string;
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.userEntry = {
       Id: 0,
+      Name: "",
       Email: "",
       Date: "",
       Title: "",
@@ -35,8 +37,8 @@ export class AppComponent implements OnInit {
   addEntry() {
 
     let date = new Date();
-    let tempEntry = {Id: this.entries.length, Email: this.userEntry.Email, Date: date.toLocaleDateString()+" "+date.toLocaleTimeString(), Title: this.userEntry.Title, Content: this.userEntry.Content};
-    let json = "{\"Id\":0,\"Email\":\""+ this.userEntry.Email + "\",\"Date\":\"" + date.toLocaleDateString()+" "+date.toLocaleTimeString() + "\",\"Title\":\"" + this.userEntry.Title + "\",\"Content\":\"" + this.userEntry.Content + "\"}";
+    let tempEntry = {Id: this.entries.length, Name: this.userEntry.Name , Email: this.userEntry.Email, Date: date.toLocaleDateString()+" "+date.toLocaleTimeString(), Title: this.userEntry.Title, Content: this.userEntry.Content};
+    let json = "{\"Id\":0,\"Name\":\"" + this.userEntry.Name + "\",\"Email\":\""+ this.userEntry.Email + "\",\"Date\":\"" + date.toLocaleDateString()+" "+date.toLocaleTimeString() + "\",\"Title\":\"" + this.userEntry.Title + "\",\"Content\":\"" + this.userEntry.Content + "\"}";
     this.http.post('http://localhost:3000/guestbook', json
     ).subscribe(
       res => {
