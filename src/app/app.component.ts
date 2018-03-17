@@ -63,13 +63,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
-  submitted = true;
-
-  onSubmit(): boolean {
-    if (this.submitted)
-      return this.submitted = false;
-    if (!this.submitted)
-      return this.submitted = true;
-  }
 }
