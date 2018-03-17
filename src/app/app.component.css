@@ -12,10 +12,14 @@
   background-color: #eae7df;
 }
 
-.box {
+.content-box {
   margin: 20px 0px;
   padding: 10px;
   background-color: #f2f0ea;
+}
+
+.form-required {
+  color: #d70000;
 }
 
 .entry-info {

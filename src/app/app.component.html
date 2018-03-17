@@ -1,16 +1,16 @@
 <div id="page">
 
-  <div class="box">
+  <div class="content-box">
     <h1>Gästebuch</h1>
     <p>Liebe Gäste, wir sind sehr bemüht Ihren Aufenthalt bei uns bestmöglich zu gestalten. Über Ihr Feedback würden wir
       uns sehr freuen!</p>
   </div>
 
-  <div id="newEntry" class="box">
+  <div id="newEntry" class="content-box">
     <h2>Neuen Eintrag hinzufügen</h2>
     <form #mailform="ngForm">
       <div class="form-group">
-        <label for="email">EMail</label>
+        <label for="email">E-Mail</label>
         <input type="text" class="form-control" id="Email"
                required
                [(ngModel)]="userEntry.Email" name="Email"
@@ -19,21 +19,24 @@
     </form>
     <form #entryform="ngForm">
       <div class="form-group">
-        <label for="title">Name*</label>
+        <label for="title">Name</label>
+        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
         <input type="text" class="form-control" id="Name"
                required
                [(ngModel)]="userEntry.Name" name="Name"
                #name="ngModel">
       </div>
       <div class="form-group">
-        <label for="title">Title*</label>
+        <label for="title">Titel</label>
+        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
         <input type="text" class="form-control" id="Title"
                required
                [(ngModel)]="userEntry.Title" name="Title"
                #name="ngModel">
       </div>
       <div class="form-group">
-        <label for="content">Content*</label>
+        <label for="content">Nachricht</label>
+        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
         <input type="text" class="form-control" id="Content"
                required
                [(ngModel)]="userEntry.Content" name="Content"
@@ -46,7 +49,7 @@
     </form>
   </div>
 
-  <div id="allEntries" class="box">
+  <div id="allEntries" class="content-box">
     <div *ngFor="let entry of entries?.reverse()">
       <b>{{entry.Name}}</b>
       <div class="entry-info">
