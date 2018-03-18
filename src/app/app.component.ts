@@ -32,9 +32,7 @@ export class AppComponent implements OnInit {
     };
   }
 
-
   addEntry() {
-
     let date = new Date();
     let tempEntry = {
       Id: this.entries.length,
