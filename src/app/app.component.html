@@ -73,8 +73,8 @@
           <b>{{entry.Name}}</b>
           <br>
           {{entry.Date}} Uhr
-          <div id="entry-email" *ngIf="entry.Email != ''">
-            | <a href="mailto:{{entry.Email}}">E-Mail</a>
+          <div id="entry-email" *ngIf="entry.Email.indexOf('@') !== -1">
+            <a href="mailto:{{entry.Email}}">E-Mail</a>
           </div>
         </div>
         <div class="panel-body">

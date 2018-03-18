@@ -17,7 +17,6 @@ export interface UserEntries {
 })
 export class AppComponent implements OnInit {
 
-  title = 'app';
   entries: UserEntries[];
   userEntry: UserEntries;
   errorMessage: string;
@@ -45,7 +44,7 @@ export class AppComponent implements OnInit {
         console.log(res);
       },
       err => {
-        console.log(err);
+        console.log(err.error.text);
       }
     );
     this.entries.push(tempEntry);
@@ -53,12 +52,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<UserEntries[]>('http://localhost:3000/guestbook').subscribe(data => this.entries = data, (err: HttpErrorResponse) => {
-      this.entries.reverse();
       if (err.error instanceof Error) {
         console.log('Client-side error occurred.');
         this.errorMessage = 'Client-side error occurred.';
       } else {
         console.log('Server-side error occurred.');
+        console.log(err.error.text);
         this.errorMessage = 'Server-side error occurred.';
       }
     });
