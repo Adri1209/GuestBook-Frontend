@@ -1,66 +1,86 @@
-<div id="page">
+<div id="body" class="panel panel-default">
 
-  <div class="content-box">
-    <h1>Gästebuch</h1>
-    <p>Liebe Gäste, wir sind sehr bemüht Ihren Aufenthalt bei uns bestmöglich zu gestalten. Über Ihr Feedback würden wir
-      uns sehr freuen!</p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <b>Gästebuch</b>
+    </div>
+    <div class="panel-body">
+      <p>Liebe Gäste, wir sind sehr bemüht Ihren Aufenthalt bei uns bestmöglich zu gestalten. Über Ihr Feedback würden wir
+        uns sehr freuen!</p>
+    </div>
   </div>
 
-  <div id="newEntry" class="content-box">
-    <h2>Neuen Eintrag hinzufügen</h2>
-    <form #mailform="ngForm">
-      <div class="form-group">
-        <label for="email">E-Mail</label>
-        <input type="text" class="form-control" id="Email"
-               required
-               [(ngModel)]="userEntry.Email" name="Email"
-               #name="ngModel">
-      </div>
-    </form>
-    <form #entryform="ngForm">
-      <div class="form-group">
-        <label for="title">Name</label>
-        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
-        <input type="text" class="form-control" id="Name"
-               required
-               [(ngModel)]="userEntry.Name" name="Name"
-               #name="ngModel">
-      </div>
-      <div class="form-group">
-        <label for="title">Titel</label>
-        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
-        <input type="text" class="form-control" id="Title"
-               required
-               [(ngModel)]="userEntry.Title" name="Title"
-               #name="ngModel">
-      </div>
-      <div class="form-group">
-        <label for="content">Nachricht</label>
-        <span class="form-required" title="Diese Angabe wird benötigt.">*</span>
-        <input type="text" class="form-control" id="Content"
-               required
-               [(ngModel)]="userEntry.Content" name="Content"
-               #name="ngModel">
-      </div>
-      <br>
-      <button type="submit" class="btn btn-default" (click)="addEntry(); mailform.reset(); entryform.reset()"
-              [disabled]="!entryform.form.valid">New Entry
-      </button>
-    </form>
-  </div>
-
-  <div id="allEntries" class="content-box">
-    <div *ngFor="let entry of entries?.reverse()">
-      <b>{{entry.Name}}</b>
-      <div class="entry-info">
-        {{entry.Date}} Uhr
-        <div class="entry-email" *ngIf="entry.Email != ''">
-          | <a href="mailto:{{entry.Email}}">E-Mail</a>
+  <div id="newEntry" class="panel panel-default">
+    <div class="panel-heading">
+      <b>Neuer Eintrag</b>
+    </div>
+    <div class="panel-body">
+      <table id="newEntry-table">
+        <tr>
+          <th id="newEntry-table-name">
+            <form #nameform="ngForm">
+              <div class="form-group">
+                <label for="title">Name</label>
+                <span class="form-required" title="Diese Angabe wird benötigt">*</span>
+                <input type="text" class="form-control" id="Name"
+                       required
+                       [(ngModel)]="userEntry.Name" name="Name"
+                       #name="ngModel">
+              </div>
+            </form>
+          </th>
+          <th>
+            <form #mailform="ngForm">
+              <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" class="form-control" id="Email"
+                       [(ngModel)]="userEntry.Email" name="Email"
+                       #name="ngModel">
+              </div>
+            </form>
+          </th>
+        </tr>
+      </table>
+      <form #entryform="ngForm">
+        <div class="form-group">
+          <label for="title">Titel</label>
+          <span class="form-required" title="Diese Angabe wird benötigt">*</span>
+          <input type="text" class="form-control" id="Title"
+                 required
+                 [(ngModel)]="userEntry.Title" name="Title"
+                 #name="ngModel">
         </div>
-      </div>
-      <div class="entry-message">
-        <p>{{entry.Title}}</p>
-        <p>{{entry.Content}}</p>
+        <div class="form-group">
+          <label for="newEntry-textarea">Nachricht</label>
+          <span class="form-required" title="Diese Angabe wird benötigt">*</span>
+          <textarea class="form-control" id="newEntry-textarea" rows="4"
+                    required
+                    [(ngModel)]="userEntry.Content" name="Content"
+                    #name="ngModel">
+          </textarea>
+        </div>
+        <button type="submit" class="btn btn-default" (click)="addEntry(); mailform.reset(); nameform.reset(); entryform.reset()"
+                [disabled]="!entryform.form.valid || !nameform.form.valid">Abschicken
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="allEntries" class="panel panel-default">
+    <div class="panel-body">
+      <div *ngFor="let entry of entries?.reverse()" class="panel panel-default">
+        <div class="panel-heading">
+          <b>{{entry.Name}}</b>
+          <br>
+          {{entry.Date}} Uhr
+          <div id="entry-email" *ngIf="entry.Email != ''">
+            | <a href="mailto:{{entry.Email}}">E-Mail</a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p><b>{{entry.Title}}</b></p>
+          <p>{{entry.Content}}</p>
+        </div>
       </div>
     </div>
   </div>

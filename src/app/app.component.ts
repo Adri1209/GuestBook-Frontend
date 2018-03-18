@@ -55,11 +55,11 @@ export class AppComponent implements OnInit {
     this.http.get<UserEntries[]>('http://localhost:3000/guestbook').subscribe(data => this.entries = data, (err: HttpErrorResponse) => {
       this.entries.reverse();
       if (err.error instanceof Error) {
-        console.log('Client-side error occured.');
-        this.errorMessage = 'Client-side error occured.';
+        console.log('Client-side error occurred.');
+        this.errorMessage = 'Client-side error occurred.';
       } else {
-        console.log('Server-side error occured.');
-        this.errorMessage = 'Server-side error occured.';
+        console.log('Server-side error occurred.');
+        this.errorMessage = 'Server-side error occurred.';
       }
     });
   }
